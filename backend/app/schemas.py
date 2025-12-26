@@ -27,3 +27,23 @@ class StudentResponse(BaseModel):
     name: str
     class Config:
         from_attributes = True
+
+# Course Schemas
+class CourseBase(BaseModel):
+    course_code: str
+    title: str
+    credits: int
+
+class CourseCreate(CourseBase):
+    pass
+
+class CourseResponse(CourseBase):
+    id: int
+    class Config:
+        from_attributes = True
+
+# To show a student along with their list of courses
+class StudentWithCourses(StudentResponse):
+    courses: list[CourseResponse] = []
+    class Config:
+        from_attributes = True
