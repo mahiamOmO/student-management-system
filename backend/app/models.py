@@ -44,3 +44,16 @@ class Course(Base):
     
     # Relationship back to Students
     students = relationship("Student", secondary=enrollments, back_populates="courses")
+
+# Add this to app/models.py
+class Result(Base):
+    __tablename__ = "results"
+    id = Column(Integer, primary_key=True, index=True)
+    student_id = Column(Integer, ForeignKey("students.id"))
+    course_id = Column(Integer, ForeignKey("courses.id"))
+    marks = Column(Integer)
+    grade = Column(String) # e.g., A+, A, B
+
+    # Relationships to access student and course details easily
+    student = relationship("Student")
+    course = relationship("Course")

@@ -47,3 +47,18 @@ class StudentWithCourses(StudentResponse):
     courses: list[CourseResponse] = []
     class Config:
         from_attributes = True
+
+# Add this to app/schemas.py
+class ResultCreate(BaseModel):
+    student_id: int
+    course_id: int
+    marks: int
+
+class ResultResponse(BaseModel):
+    id: int
+    student_id: int
+    course_id: int
+    marks: int
+    grade: str
+    class Config:
+        from_attributes = True
